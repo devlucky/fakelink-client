@@ -1,0 +1,45 @@
+.services-preview{
+  margin: 20px;
+}
+.service{
+
+  &.facebook{
+    $border-color: #d9d9d9;
+    background-color: white;
+    padding: 12px;
+    width: 510px;
+
+    .fb-avatar{
+      width: 40px;
+      height: 40px;
+      margin-right: 12px;
+    }
+    header{
+      display: flex;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    footer{
+      border: 1px solid $border-color;
+      display: flex;
+
+      .service-img{
+        width: 158px;
+        height: 158px;
+        border-right: 1px solid $border-color;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      .service-title{
+        font-size: 18px;
+        color: black;
+        text-transform: capitalize;
+        margin-bottom: 5px;
+      }
+      .service-info{
+        flex: 1;
+        padding: 12px;
+      }
+    }
+  }
+}

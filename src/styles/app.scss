@@ -1,5 +1,7 @@
 @import "config";
 @import "common";
+@import "form";
+@import "services";
 
 *{
   margin: 0;
@@ -8,6 +10,7 @@
 }
 
 body{
+  padding: 20px;
   font-family: Verdana;
   background-color: #f7f5f7;
   color: $font-color;

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Faker</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <input id="title" data-link-prop="title" placeholder="Title..." type="text">
+  <input id="real-url" data-link-prop="realUrl" placeholder="Real url..." type="text">
+  <input id="fake-url" data-link-prop="fakeUrl" placeholder="Fake url..." type="text">
+  <input id="image" data-link-prop="image" placeholder="Image..." type="text">
+  <!-- <label for="image" class="image-label">
+    Upload file
+    <input type="file" id="image" data-link-prop="image">
+  </label> -->
+  <input id="description" data-link-prop="description" placeholder="Description..." type="text">
+  <button id="save-link" data-link-prop="saveLink">Save link</button>
+  <button id="fill-demo-data">Fill with demo data</button>
+
+  <section id="preview">
+    <ul class="services-preview">
+      <li class="service facebook">
+        <header>
+          <img src="default-avatar.jpg" class="fb-avatar">
+          <div class="service-url"></div>
+        </header>
+        <footer>
+          <!-- <div class="service-img"></div> -->
+          <img class="service-img">
+          <div class="service-info">
+            <div class="service-title"></div>
+            <div class="service-description"></div>
+          </div>
+        </footer>
+      </li>
+    </ul>
+  </section>
+  <!-- <script src="../node_modules/kakapo/lib/kakapo.js"></script> -->
+  <script src="bundle.js"></script>
+</body>
+</html>
