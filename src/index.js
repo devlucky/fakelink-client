@@ -20,7 +20,7 @@ const addEvents = () => {
 
   on($('#fill-demo-data'), 'click', fillDemoData);
   //TODO: Local images supported
-  // getInfo(elements.image, onImageChange);
+  getInfo(elements.image, onImageChange);
 };
 
 const fillDemoData = () => {

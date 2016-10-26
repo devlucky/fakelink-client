@@ -1,15 +1,36 @@
 .services-preview{
-  margin: 20px;
+  text-align: center;
 }
 .service{
+  position: relative;
+  height: 250px;
+  width: 510px;
+  margin-bottom: 30px;
+  padding: 12px;
+  background-color: white;
+
+  header{
+    display: none;
+  }
+  .logo{
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    border-radius: 100%;
+  }
 
   &.facebook{
     $border-color: #d9d9d9;
-    background-color: white;
-    padding: 12px;
-    width: 510px;
-
-    .fb-avatar{
+  
+    .logo{
+      background-image: url('img/facebook-logo.png');
+    }
+    .avatar{
       width: 40px;
       height: 40px;
       margin-right: 12px;
@@ -40,6 +61,55 @@
         flex: 1;
         padding: 12px;
       }
+    }
+  }
+  &.twitter{
+    .logo{
+      background-image: url('img/twitter-logo.png');
+    }
+
+    .avatar{
+      width: 48px;
+      height: 48px;
+      margin-right: 10px;
+      border-radius: 5px;
+    }
+    .user-name{
+      color: black;
+      font-weight: bold;
+      font-size: 15px;
+
+      .nick{
+        color: #8899a6;
+        font-size: 12px;
+      }
+    }
+    .service-url{
+      margin-top: 2px;
+    }
+    .service-img{
+      width: 125px;
+      height: 125px;
+    }
+    header{
+      display: flex;
+    }
+    footer{
+      display: flex;
+      margin-top: 20px;
+      margin-left: 55px;
+      border-radius: 5px;
+      overflow: hidden;
+      border: 1px solid #E1E8ED;
+    }
+    .service-title{
+      color: black;
+      font-weight: bold;
+      font-family: Verdana;
+      font-size: 14px;
+    }
+    .service-info{
+      padding: 10px;
     }
   }
 }

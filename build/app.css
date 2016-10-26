@@ -1,16 +1,55 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+#link-attributes {
+  width: 300px;
+  border-radius: 7px;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  height: 470px;
+  margin-right: 20px; }
+
 input {
-  height: 45px;
+  height: 45px; }
+
+input, textarea {
+  width: 100%;
   font-size: 15px;
-  margin: 0 10px; }
+  outline: none;
+  background-color: #f2f2f2;
+  border: 0;
+  margin-bottom: 10px;
+  padding: 15px;
+  font-family: "Roboto", sans-serif; }
+
+textarea {
+  resize: none;
+  height: 100px; }
 
 .services-preview {
-  margin: 20px; }
+  text-align: center; }
 
-.service.facebook {
-  background-color: white;
+.service {
+  position: relative;
+  height: 250px;
+  width: 510px;
+  margin-bottom: 30px;
   padding: 12px;
-  width: 510px; }
-  .service.facebook .fb-avatar {
+  background-color: white; }
+  .service header {
+    display: none; }
+  .service .logo {
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    border-radius: 100%; }
+  .service.facebook .logo {
+    background-image: url("img/facebook-logo.png"); }
+  .service.facebook .avatar {
     width: 40px;
     height: 40px;
     margin-right: 12px; }
@@ -35,42 +74,76 @@ input {
     .service.facebook footer .service-info {
       flex: 1;
       padding: 12px; }
+  .service.twitter .logo {
+    background-image: url("img/twitter-logo.png"); }
+  .service.twitter .avatar {
+    width: 48px;
+    height: 48px;
+    margin-right: 10px;
+    border-radius: 5px; }
+  .service.twitter .user-name {
+    color: black;
+    font-weight: bold;
+    font-size: 15px; }
+    .service.twitter .user-name .nick {
+      color: #8899a6;
+      font-size: 12px; }
+  .service.twitter .service-url {
+    margin-top: 2px; }
+  .service.twitter .service-img {
+    width: 125px;
+    height: 125px; }
+  .service.twitter header {
+    display: flex; }
+  .service.twitter footer {
+    display: flex;
+    margin-top: 20px;
+    margin-left: 55px;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid #E1E8ED; }
+  .service.twitter .service-title {
+    color: black;
+    font-weight: bold;
+    font-family: Verdana;
+    font-size: 14px; }
+  .service.twitter .service-info {
+    padding: 10px; }
 
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  text-align: left; }
 
 body {
   padding: 20px;
-  font-family: Verdana;
-  background-color: #f7f5f7;
-  color: #7f7f7f; }
+  padding-top: 10px;
+  font-family: "Roboto", sans-serif;
+  color: #7f7f7f;
+  background: linear-gradient(to left, #76b852, #8DC26F); }
 
 button {
-  padding: 5px 10px;
-  cursor: pointer;
-  background-color: white;
-  border: 1px solid #cbcbcb;
-  border-radius: 5px;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background-color: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: white;
   font-size: 14px;
-  color: #5698dd;
-  outline: none;
-  transition: box-shadow .3s; }
+  transition: background-color .3s ease;
+  cursor: pointer;
+  margin-bottom: 10px; }
   button:hover {
-    box-shadow: 0px 0px 5px -2px black inset; }
-  button:active {
-    background-color: #eaecef; }
+    background-color: #43A047; }
 
 ul {
   list-style: none; }
 
-input, textarea {
-  outline: none; }
-
-textarea {
-  resize: none;
-  border: 1px solid #d6d7d8; }
+h1 {
+  font-weight: normal; }
 
 a {
   cursor: pointer; }
@@ -81,3 +154,18 @@ select {
 img.rounded {
   border-radius: 100%;
   border: 1px solid #d6d7d8; }
+
+#project-name {
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.8); }
+
+.content {
+  display: flex; }
+
+#preview {
+  flex: 1;
+  justify-content: center;
+  display: flex; }

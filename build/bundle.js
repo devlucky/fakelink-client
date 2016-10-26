@@ -110,7 +110,7 @@ var addEvents = function addEvents() {
 
   on($('#fill-demo-data'), 'click', fillDemoData);
   //TODO: Local images supported
-  // getInfo(elements.image, onImageChange);
+  (0, _maggie.getInfo)(elements.image, onImageChange);
 };
 
 var fillDemoData = function fillDemoData() {
