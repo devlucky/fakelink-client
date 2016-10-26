@@ -6,6 +6,54 @@
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   height: 470px;
   margin-right: 20px;
+  position: relative;
+
+  &:before{
+    content: '';
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    background: rgba(black, 0.5);
+    transition: opacity .2s;
+    border-radius: inherit;
+  }
+  
+  &:after{
+    color: white;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    font-size: 25px;
+    font-weight: bold;
+  }
+  &.loading, &.saved, &.errored{
+    &:before{
+      opacity: 1;
+    }
+  }
+  &.loading{
+    &:after{
+      content: 'Saving link...';
+    }
+  }
+  &.saved{
+    &:after{
+      content: 'Saved 🚀';
+      color: #afff81;
+    } 
+  }
+  &.errored{
+    &:after{
+      content: 'Error 😿';
+      color: #ff7a7a;
+    } 
+  }
 }
 input{
   height: 45px;

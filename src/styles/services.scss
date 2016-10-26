@@ -8,9 +8,19 @@
   margin-bottom: 30px;
   padding: 12px;
   background-color: white;
-
+  border-radius: 3px;
+  
   header{
     display: none;
+  }
+  footer{
+    overflow: hidden;
+  }
+  .service-url{
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: calc(100% - 50px);
+    text-overflow: ellipsis;
   }
   .logo{
     position: absolute;
@@ -43,6 +53,7 @@
     footer{
       border: 1px solid $border-color;
       display: flex;
+      height: 158px;
 
       .service-img{
         width: 158px;
@@ -101,6 +112,7 @@
       border-radius: 5px;
       overflow: hidden;
       border: 1px solid #E1E8ED;
+      height: 125px;
     }
     .service-title{
       color: black;
@@ -108,8 +120,18 @@
       font-family: Verdana;
       font-size: 14px;
     }
+    .service-description{
+      // height: 50px;
+      // overflow: hidden;
+    }
     .service-info{
       padding: 10px;
+      flex: 1;
+    }
+    .actions{
+      width: 270px;
+      margin-left: 54px;
+      margin-top: 7px;
     }
   }
 }

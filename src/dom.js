@@ -5,7 +5,7 @@ const $$ = selector => document.querySelectorAll(selector);
 const on = (element, eventName, cb) => element.addEventListener(eventName, cb);
 
 const fillElements = function() {
-  const selectors = ['title', 'realUrl', 'fakeUrl', 'image', 'description', 'saveLink'];
+  const selectors = ['title', 'realUrl', 'fakeUrl', 'image', 'description', 'saveLink', 'linkAttributes'];
 
   return selectors.reduce((prev, current) => {
     prev[current] = $(`[data-link-prop="${current}"]`);

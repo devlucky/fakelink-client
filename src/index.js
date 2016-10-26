@@ -1,16 +1,17 @@
 import {getInfo} from 'maggie';
 // require('./kakapo-config');
 const dom = require('./dom');
+const finalable = require('./finalable');
 const {$, $$, fillElements, on} = dom;
 const elements = fillElements(); window.elements = elements;
-const link = {
+const getInitialLinkState = () => ({
   title: '',
   realUrl: '',
   fakeUrl: '',
   image: '',
   description: ''
-};
-
+});
+let link = getInitialLinkState();
 const addEvents = () => {
   on(elements.title, 'input', updateLinkValue);
   on(elements.realUrl, 'input', updateLinkValue);
@@ -24,11 +25,11 @@ const addEvents = () => {
 };
 
 const fillDemoData = () => {
-  elements.title.value = 'Nike buys Adidas for 1€';
-  elements.realUrl.value = 'www.adidas.com/careers';
-  elements.fakeUrl.value = 'www.nike.com';
-  elements.image.value = 'https://pbs.twimg.com/profile_images/767816797827452928/TgIRijjA.jpg';
-  elements.description.value = 'Description for the lulz';
+  elements.title.value = 'Facebook Completes Its $22 Billion Purchase of WhatsApp';
+  elements.realUrl.value = 'http://time.com/3477028/facebook-whatsapp-19-billion-dollar-deal';
+  elements.fakeUrl.value = 'https://twitter.com/devluckyness';
+  elements.image.value = 'http://www.iphoneforums.net/news/wp-content/uploads/2014/02/facebook-whatsapp-buy-buyout.jpg';
+  elements.description.value = 'The final hurdle in the deal was crossed on Friday, when the E.U. approved the purchase after much resistance from Europe’s telecommunications industry';
 
   Object.keys(elements).forEach(name => {
     updateLinkValue.call(elements[name]);
@@ -55,11 +56,28 @@ const saveLink = () => {
   const request = new Request(url, {
     method: 'POST', 
     body
-    // mode: 'cors'
   });
 
-  fetch(request).then(res => {
-    console.log('response', res);
+  elements.linkAttributes.classList.add('loading');
+  
+  finalable(fetch(request))
+  .then(res => {
+    elements.linkAttributes.classList.add('saved');
+
+    elements.title.value = '';
+    elements.realUrl.value = '';
+    elements.fakeUrl.value = '';
+    elements.image.value = '';
+    elements.description.value = '';
+
+    link = getInitialLinkState();
+    updatePreview();
+  })
+  .catch(err => {
+    elements.linkAttributes.classList.add('errored');
+  })
+  .finally(() => {
+    elements.linkAttributes.classList.remove('loading');
   });
 };
 

@@ -64,7 +64,7 @@ var on = function on(element, eventName, cb) {
 };
 
 var fillElements = function fillElements() {
-  var selectors = ['title', 'realUrl', 'fakeUrl', 'image', 'description', 'saveLink'];
+  var selectors = ['title', 'realUrl', 'fakeUrl', 'image', 'description', 'saveLink', 'linkAttributes'];
 
   return selectors.reduce(function (prev, current) {
     prev[current] = $('[data-link-prop="' + current + '"]');
@@ -81,26 +81,76 @@ module.exports = {
 };
 
 },{}],3:[function(require,module,exports){
+"use strict";
+
+/**
+ * TODO: Try to use Proxy
+ */
+module.exports = function (promise) {
+  var response = {
+    then: function then() {
+      var _promise$then;
+
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      (_promise$then = promise.then).call.apply(_promise$then, [promise].concat(args));
+
+      return response;
+    },
+    catch: function _catch() {
+      var _promise$catch;
+
+      for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        args[_key2] = arguments[_key2];
+      }
+
+      (_promise$catch = promise.catch).call.apply(_promise$catch, [promise].concat(args));
+
+      return response;
+    },
+    finally: function _finally() {
+      var _promise$then2, _promise$catch2;
+
+      for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+        args[_key3] = arguments[_key3];
+      }
+
+      (_promise$then2 = promise.then).call.apply(_promise$then2, [promise].concat(args));
+      (_promise$catch2 = promise.catch).call.apply(_promise$catch2, [promise].concat(args));
+
+      return response;
+    }
+  };
+
+  return response;
+};
+
+},{}],4:[function(require,module,exports){
 'use strict';
 
 var _maggie = require('maggie');
 
 // require('./kakapo-config');
 var dom = require('./dom');
+var finalable = require('./finalable');
 var $ = dom.$;
 var $$ = dom.$$;
 var fillElements = dom.fillElements;
 var on = dom.on;
 
 var elements = fillElements();window.elements = elements;
-var link = {
-  title: '',
-  realUrl: '',
-  fakeUrl: '',
-  image: '',
-  description: ''
+var getInitialLinkState = function getInitialLinkState() {
+  return {
+    title: '',
+    realUrl: '',
+    fakeUrl: '',
+    image: '',
+    description: ''
+  };
 };
-
+var link = getInitialLinkState();
 var addEvents = function addEvents() {
   on(elements.title, 'input', updateLinkValue);
   on(elements.realUrl, 'input', updateLinkValue);
@@ -114,11 +164,11 @@ var addEvents = function addEvents() {
 };
 
 var fillDemoData = function fillDemoData() {
-  elements.title.value = 'Nike buys Adidas for 1€';
-  elements.realUrl.value = 'www.adidas.com/careers';
-  elements.fakeUrl.value = 'www.nike.com';
-  elements.image.value = 'https://pbs.twimg.com/profile_images/767816797827452928/TgIRijjA.jpg';
-  elements.description.value = 'Description for the lulz';
+  elements.title.value = 'Facebook Completes Its $22 Billion Purchase of WhatsApp';
+  elements.realUrl.value = 'http://time.com/3477028/facebook-whatsapp-19-billion-dollar-deal';
+  elements.fakeUrl.value = 'https://twitter.com/devluckyness';
+  elements.image.value = 'http://www.iphoneforums.net/news/wp-content/uploads/2014/02/facebook-whatsapp-buy-buyout.jpg';
+  elements.description.value = 'The final hurdle in the deal was crossed on Friday, when the E.U. approved the purchase after much resistance from Europe’s telecommunications industry';
 
   Object.keys(elements).forEach(function (name) {
     updateLinkValue.call(elements[name]);
@@ -145,11 +195,25 @@ var saveLink = function saveLink() {
   var request = new Request(url, {
     method: 'POST',
     body: body
-    // mode: 'cors'
   });
 
-  fetch(request).then(function (res) {
-    console.log('response', res);
+  elements.linkAttributes.classList.add('loading');
+
+  finalable(fetch(request)).then(function (res) {
+    elements.linkAttributes.classList.add('saved');
+
+    elements.title.value = '';
+    elements.realUrl.value = '';
+    elements.fakeUrl.value = '';
+    elements.image.value = '';
+    elements.description.value = '';
+
+    link = getInitialLinkState();
+    updatePreview();
+  }).catch(function (err) {
+    elements.linkAttributes.classList.add('errored');
+  }).finally(function () {
+    elements.linkAttributes.classList.remove('loading');
   });
 };
 
@@ -180,4 +244,4 @@ var updatePreview = function updatePreview() {
 
 addEvents();
 
-},{"./dom":2,"maggie":1}]},{},[3]);
+},{"./dom":2,"./finalable":3,"maggie":1}]},{},[4]);
