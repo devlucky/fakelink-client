@@ -1,0 +1,8 @@
+version: '2'
+services: 
+  fakelink-client:
+    image: fakelink-client:latest
+    volumes:
+      - ./src:/app/src
+    ports:
+      - 3000:3000

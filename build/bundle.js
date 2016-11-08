@@ -135,10 +135,10 @@ var _maggie = require('maggie');
 // require('./kakapo-config');
 var dom = require('./dom');
 var finalable = require('./finalable');
-var $ = dom.$;
-var $$ = dom.$$;
-var fillElements = dom.fillElements;
-var on = dom.on;
+var $ = dom.$,
+    $$ = dom.$$,
+    fillElements = dom.fillElements,
+    on = dom.on;
 
 var elements = fillElements();window.elements = elements;
 var getInitialLinkState = function getInitialLinkState() {

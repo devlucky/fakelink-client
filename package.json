@@ -8,7 +8,9 @@
     "watch": "watchify src/index.js -o build/bundle.js -v -t [ babelify --presets [ es2015 ]",
     "serve": "serve",
     "styles": "node-sass src/styles/app.scss build/app.css -w",
-    "release": "npm version patch && npm publish && git push --tags && git push"
+    "release": "npm version patch && npm publish && git push --tags && git push",
+    "docker:build": "make docker_build",
+    "docker:run": "make docker_run"
   },
   "repository": {
     "type": "git",
