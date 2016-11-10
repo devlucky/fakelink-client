@@ -4,7 +4,7 @@ RUN mkdir -p /app
 RUN mkdir -p /app/build
 WORKDIR /app
 COPY package.json ./package.json
-RUN npm i
+RUN npm i --production
 ADD ./src /app/src
 ADD ./build /app/build
 RUN npm build
