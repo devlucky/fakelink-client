@@ -10,7 +10,10 @@
     "styles": "node-sass src/styles/app.scss build/app.css -w",
     "release": "npm version patch && npm publish && git push --tags && git push",
     "docker:build": "make docker_build",
-    "docker:run": "make docker_run"
+    "docker:run": "make docker_run",
+    "build:js": "browserify src/index.js -o build/bundle.js -t [ babelify --presets [ es2015 ]",
+    "build:css": "node-sass src/styles/app.scss build/app.css",
+    "build": "npm run build:js && npm run build:css"
   },
   "repository": {
     "type": "git",
